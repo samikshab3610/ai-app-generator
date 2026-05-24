@@ -1,7 +1,7 @@
 export default function TableRenderer({ data }: any) {
   if (!data || data.length === 0) {
     return (
-      <div className="p-4 bg-yellow-100">
+      <div className="p-4 bg-100">
         No data available
       </div>
     )

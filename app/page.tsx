@@ -4,7 +4,20 @@ import ComponentMapper from "@/components/renderer/ComponentMapper"
 import { useState } from "react"
 
 export default function Home() {
-  const [json, setJson] = useState("")
+  const [json, setJson] = useState(`{
+  "ui": [
+    {
+      "type": "form",
+      "fields": [
+        { "name": "name", "type": "text" },
+        { "name": "age", "type": "number" }
+      ]
+    },
+    {
+      "type": "table"
+    }
+  ]
+}`)
   const [error, setError] = useState("")
   const [config, setConfig] = useState<any>(null)
   const [data, setData] = useState<any[]>([])
@@ -23,6 +36,10 @@ export default function Home() {
   return (
     <main className="p-6 space-y-4">
       <h1 className="text-2xl font-bold">AI App Generator</h1>
+      <p className="text-gray-400">
+        Generate dynamic forms and tables from JSON configuration
+      </p>
+
 
       <textarea
         className="border w-full p-2 h-40"
@@ -33,7 +50,7 @@ export default function Home() {
 
       <button
         onClick={handleGenerate}
-        className="bg-green-500 text-white px-4 py-2"
+        className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
       >
         Generate App
       </button>
