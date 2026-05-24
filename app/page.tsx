@@ -1,4 +1,5 @@
 "use client"
+import ComponentMapper from "@/components/renderer/ComponentMapper"
 
 import { useState } from "react"
 
@@ -6,6 +7,7 @@ export default function Home() {
   const [json, setJson] = useState("")
   const [error, setError] = useState("")
   const [config, setConfig] = useState<any>(null)
+  const [data, setData] = useState<any[]>([])
 
   const handleGenerate = () => {
     try {
@@ -38,13 +40,14 @@ export default function Home() {
 
       {error && <div className="text-red-500">{error}</div>}
 
-      {config?.ui?.map((comp: any, i: number) => {
-        return (
-          <div key={i} className="p-4 border rounded">
-            Rendering component: {comp.type}
-          </div>
-        )
-      })}
+      {config?.ui?.map((comp: any, i: number) => (
+        <ComponentMapper
+          key={i}
+          component={comp}
+          data={data}
+          setData={setData}
+        />
+      ))}
     </main>
   )
 }
