@@ -1,51 +1,65 @@
-🚀 AI App Generator
+# 🚀 AI App Generator  
 
-A configuration-driven application generator that dynamically builds UI components (forms, tables) from JSON input.
-This project demonstrates frontend architecture, dynamic rendering, and robust error handling under uncertain configurations.
+🔗 **Live Demo:** https://ai-app-generator-beta.vercel.app/  
 
-📌 Features
-🔹 Dynamic UI Rendering from JSON
-🔹 Form Generation based on configuration
-🔹 Table Rendering with live data
-🔹 CSV Import (bulk data upload)
-🔹 Graceful Error Handling
-Invalid JSON
-Missing fields
-Unsupported components
-🔹 Responsive UI using Tailwind CSS
+A configuration-driven application generator that dynamically builds UI components (forms, tables) from JSON input.  
+This project demonstrates dynamic frontend architecture, system design thinking, and robust error handling.
 
+---
 
-🧠 How It Works
-User provides a JSON configuration
-System parses and validates the input
-Components are dynamically mapped and rendered
-Form submissions and CSV uploads update in-memory data
-Table displays the updated dataset
+## 📌 Features
 
+- Dynamic UI Rendering from JSON  
+- Form Generation based on configuration  
+- Table Rendering with live data  
+- CSV Import (bulk data upload)  
+- Graceful Error Handling  
+  - Invalid JSON  
+  - Missing fields  
+  - Unsupported components  
+- Responsive UI using Tailwind CSS  
 
-🏗️ Architecture
-Core Components
-ComponentMapper
-Maps JSON type → React Component
-Handles unknown components safely
-FormRenderer
-Generates input fields dynamically
-Handles user input and CSV upload
-TableRenderer
-Displays dynamic data in tabular format
+---
 
+## 🧠 How It Works
 
-⚠️ Error Handling
+1. User provides a JSON configuration  
+2. System parses and validates the input  
+3. Components are dynamically mapped and rendered  
+4. Form submissions and CSV uploads update in-memory data  
+5. Table displays the updated dataset  
 
-The system is designed to be fault-tolerant:
+---
 
-Invalid JSON → Error message shown
-Missing field name → Skipped with warning
-Unsupported field type → Handled gracefully
-Unknown component → Fallback UI shown
+## 🏗️ Architecture
 
+### ComponentMapper
+- Maps JSON `type` → React Component  
+- Handles unknown components safely  
 
-📂 Sample JSON
+### FormRenderer
+- Dynamically generates input fields  
+- Handles user input and CSV upload  
+
+### TableRenderer
+- Displays structured data dynamically  
+
+---
+
+## ⚠️ Error Handling
+
+- Invalid JSON → Error message displayed  
+- Missing field name → Skipped with warning  
+- Unsupported field type → Handled gracefully  
+- Unknown component → Fallback UI shown  
+
+👉 **System never crashes due to bad configuration**
+
+---
+
+## 📂 Sample JSON
+
+```json
 {
   "ui": [
     {
@@ -60,41 +74,58 @@ Unknown component → Fallback UI shown
     }
   ]
 }
+```
+
+---
 
 
-📦 Tech Stack
-Frontend: Next.js, React, TypeScript
-Styling: Tailwind CSS
-CSV Parsing: PapaParse
+## 📦 Tech Stack
 
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- PapaParse
 
-⚡ Getting Started
+---
+
+## ⚡ Getting Started
+
+```bash
 npm install
 npm run dev
+```
 
-Open:
+- Open: http://localhost:3000
 
-http://localhost:3000
+--- 
+
+## 🌍 Deployment
+- 🔗 https://ai-app-generator-beta.vercel.app/
+
+## 🎥 Demo
 
 
-🌍 Deployment
+---
 
-Deployed on Vercel
-👉 Add your live link here after deployment
+## 🧠 Design Decisions & Tradeoffs
 
-🎥 Demo
-👉 Add your Loom video link here
+- Used in-memory state instead of database for fast development
+- Focused on reliability and error handling
+- Added basic backend runtime (API route)
+- Designed for future backend + DB extension
 
-🧠 Design Decisions & Tradeoffs
-Used in-memory state instead of database for faster iteration under time constraints
-Focused on robust frontend architecture and error handling
-Designed system to be extensible for backend integration (APIs, DB)
+---
 
-🚀 Future Improvements
-Backend API integration (Node.js / Next API routes)
-Database support (PostgreSQL + Prisma)
-Authentication system
-Workflow automation
+## 🚀 Future Improvements
 
-👩‍💻 Author
-Samiksha Bhore
+- Backend API integration
+- Database (PostgreSQL + Prisma)
+- Authentication
+- Workflow automation
+
+---
+
+### 👩‍💻 Author
+
+- Samiksha Bhore
