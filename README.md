@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+🚀 AI App Generator
 
-## Getting Started
+A configuration-driven application generator that dynamically builds UI components (forms, tables) from JSON input.
+This project demonstrates frontend architecture, dynamic rendering, and robust error handling under uncertain configurations.
 
-First, run the development server:
+📌 Features
+🔹 Dynamic UI Rendering from JSON
+🔹 Form Generation based on configuration
+🔹 Table Rendering with live data
+🔹 CSV Import (bulk data upload)
+🔹 Graceful Error Handling
+Invalid JSON
+Missing fields
+Unsupported components
+🔹 Responsive UI using Tailwind CSS
 
-```bash
+
+🧠 How It Works
+User provides a JSON configuration
+System parses and validates the input
+Components are dynamically mapped and rendered
+Form submissions and CSV uploads update in-memory data
+Table displays the updated dataset
+
+
+🏗️ Architecture
+Core Components
+ComponentMapper
+Maps JSON type → React Component
+Handles unknown components safely
+FormRenderer
+Generates input fields dynamically
+Handles user input and CSV upload
+TableRenderer
+Displays dynamic data in tabular format
+
+
+⚠️ Error Handling
+
+The system is designed to be fault-tolerant:
+
+Invalid JSON → Error message shown
+Missing field name → Skipped with warning
+Unsupported field type → Handled gracefully
+Unknown component → Fallback UI shown
+
+
+📂 Sample JSON
+{
+  "ui": [
+    {
+      "type": "form",
+      "fields": [
+        { "name": "name", "type": "text" },
+        { "name": "age", "type": "number" }
+      ]
+    },
+    {
+      "type": "table"
+    }
+  ]
+}
+
+
+📦 Tech Stack
+Frontend: Next.js, React, TypeScript
+Styling: Tailwind CSS
+CSV Parsing: PapaParse
+
+
+⚡ Getting Started
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+🌍 Deployment
 
-To learn more about Next.js, take a look at the following resources:
+Deployed on Vercel
+👉 Add your live link here after deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+🎥 Demo
+👉 Add your Loom video link here
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+🧠 Design Decisions & Tradeoffs
+Used in-memory state instead of database for faster iteration under time constraints
+Focused on robust frontend architecture and error handling
+Designed system to be extensible for backend integration (APIs, DB)
 
-## Deploy on Vercel
+🚀 Future Improvements
+Backend API integration (Node.js / Next API routes)
+Database support (PostgreSQL + Prisma)
+Authentication system
+Workflow automation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+👩‍💻 Author
+Samiksha Bhore
