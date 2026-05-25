@@ -1,7 +1,7 @@
 "use client"
-import ComponentMapper from "@/components/renderer/ComponentMapper"
 
-import { useState } from "react"
+import ComponentMapper from "@/components/renderer/ComponentMapper"
+import { useEffect, useState } from "react"
 
 export default function Home() {
   const [json, setJson] = useState(`{
@@ -21,6 +21,24 @@ export default function Home() {
   const [error, setError] = useState("")
   const [config, setConfig] = useState<any>(null)
   const [data, setData] = useState<any[]>([])
+
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  const fetchData = async () => {
+    try {
+      const res = await fetch("/api/data")
+      const result = await res.json()
+
+      if (result.success) {
+        setData(result.data.map((item: any) => item.content))
+      }
+    } catch (error) {
+      console.error("Error fetching data")
+    }
+  }
 
   const handleGenerate = () => {
     try {

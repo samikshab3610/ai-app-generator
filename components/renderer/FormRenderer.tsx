@@ -20,10 +20,29 @@ export default function FormRenderer({ component, data, setData }: any) {
         setForm({ ...form, [name]: value })
     }
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = async (e: any) => {
         e.preventDefault()
-        setData((prev: any) => [...prev, form])
-        setForm({})
+
+        try {
+            const res = await fetch("/api/data", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(form)
+            })
+
+            const result = await res.json()
+
+            if (result.success) {
+                alert("Data saved successfully")
+                setForm({})
+            } else {
+                alert("Error saving data")
+            }
+        } catch (error) {
+            alert("Something went wrong")
+        }
     }
 
     const handleCSVUpload = (e: any) => {
