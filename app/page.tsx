@@ -2,6 +2,7 @@
 
 import ComponentMapper from "@/components/renderer/ComponentMapper"
 import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 
 export default function Home() {
   const [json, setJson] = useState(`{
@@ -22,6 +23,14 @@ export default function Home() {
   const [config, setConfig] = useState<any>(null)
   const [data, setData] = useState<any[]>([])
 
+  const router = useRouter()
+
+  useEffect(() => {
+    const user = localStorage.getItem("user")
+    if (!user) {
+      router.push("/login")
+    }
+  }, [])
 
   useEffect(() => {
     fetchData()
@@ -58,6 +67,16 @@ export default function Home() {
         Generate dynamic forms and tables from JSON configuration
       </p>
 
+
+      <button
+        onClick={() => {
+          localStorage.removeItem("user")
+          window.location.href = "/login"
+        }}
+        className="bg-red-500 text-white px-4 py-2 rounded"
+      >
+        Logout
+      </button>
 
       <textarea
         className="border w-full p-2 h-40"
