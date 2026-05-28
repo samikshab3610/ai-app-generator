@@ -1,8 +1,11 @@
 'use client'
-import React, { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useSession } from 'next-auth/react'
 import { validateConfig } from '@/lib/validator'
 import { AppConfig } from '@/lib/types'
 import AppRenderer from '@/components/renderer/AppRenderer'
+import { useRouter } from 'next/navigation'
+
 
 const SAMPLE_CONFIG = `{
   "appType": "crud",
@@ -41,6 +44,25 @@ export default function Home() {
   const [errors, setErrors] = useState<string[]>([])
   const [warnings, setWarnings] = useState<string[]>([])
   const [parseError, setParseError] = useState('')
+  const { data: session, status } = useSession()
+
+  const router = useRouter()
+
+  useEffect(() => {
+    if (session) {
+      router.push('/dashboard')
+    } else if (status === 'unauthenticated') {
+      router.push('/login')
+    }
+  }, [session, status, router])
+
+  if (status === 'loading') {
+    return (
+      <main className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <p className="text-gray-500">Loading...</p>
+      </main>
+    )
+  }
 
   const handleGenerate = () => {
     setParseError('')
@@ -64,6 +86,23 @@ export default function Home() {
       setConfig(result.sanitized)
     } else {
       setConfig(null)
+    }
+  }
+
+  const handleSave = async () => {
+    if (!config) return
+    const res = await fetch('/api/projects', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ config }),
+    })
+    const data = await res.json()
+    if (res.ok) {
+      window.location.href = `/dashboard`
+    } else if (res.status === 401) {
+      window.location.href = '/login'
+    } else {
+      alert(data.error || 'Failed to save')
     }
   }
 
@@ -122,6 +161,14 @@ export default function Home() {
                 <div className="text-center">
                   <p className="text-gray-400 text-lg">👈 Paste your config and click</p>
                   <p className="text-gray-400 font-semibold">Generate App</p>
+                  {config && (
+                    <button
+                      onClick={handleSave}
+                      className="mt-2 w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition"
+                    >
+                      {session ? '💾 Save to Dashboard' : '🔐 Login to Save'}
+                    </button>
+                  )}
                 </div>
               </div>
             )}

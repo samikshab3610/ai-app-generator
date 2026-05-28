@@ -5,9 +5,11 @@ import ComponentRegistry from './ComponentRegistry'
 
 interface Props {
   config: AppConfig
+  projectId?: string
 }
 
-export default function AppRenderer({ config }: Props) {
+export default function AppRenderer({ config, projectId }: Props) {
+
   const [tableData, setTableData] = useState<Record<string, unknown>[]>([])
 
   const handleFormSubmit = (data: Record<string, unknown>) => {
