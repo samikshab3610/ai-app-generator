@@ -127,7 +127,7 @@ export default function DashboardPage() {
             <p className="text-gray-500 text-sm mt-1">Manage and view your generated apps</p>
           </div>
           <Link
-            href="/"
+            href="/builder"
             className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2.5 rounded-lg transition text-sm"
           >
             + Create New App
@@ -140,7 +140,7 @@ export default function DashboardPage() {
             <h2 className="text-xl font-semibold text-gray-700 mb-2">No apps yet</h2>
             <p className="text-gray-400 text-sm mb-6">Create your first app from a JSON config</p>
             <Link
-              href="/"
+              href="/builder"
               className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg transition text-sm"
             >
               Create App
