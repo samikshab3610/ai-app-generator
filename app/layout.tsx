@@ -1,7 +1,8 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 import SessionWrapper from '@/components/SessionWrapper'
+import PWARegister from '@/components/PWARegister'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -16,6 +17,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'AI App Generator',
   description: 'Generate apps from JSON configs',
+  manifest: '/manifest.json',
+}
+
+export const viewport: Viewport = {
+  themeColor: '#2563eb',
 }
 
 export default function RootLayout({
@@ -26,7 +32,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <SessionWrapper>{children}</SessionWrapper>
+        <SessionWrapper>
+          <PWARegister />
+          {children}
+        </SessionWrapper>
       </body>
     </html>
   )

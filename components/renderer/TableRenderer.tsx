@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { TableColumn } from '@/lib/types'
 
 interface Props {
@@ -11,13 +11,17 @@ interface Props {
 export default function TableRenderer({ columns, data = [], title }: Props) {
   const [rows, setRows] = useState<Record<string, unknown>[]>(data)
 
+  useEffect(() => {
+    setRows(data)
+  }, [data])
+
   // infer columns from data if not provided
   const resolvedColumns: TableColumn[] =
     columns && columns.length > 0
       ? columns
       : rows.length > 0
-      ? Object.keys(rows[0]).map((key) => ({ key, label: key }))
-      : []
+        ? Object.keys(rows[0]).map((key) => ({ key, label: key }))
+        : []
 
   if (resolvedColumns.length === 0) {
     return (
