@@ -12,8 +12,10 @@ export default function TableRenderer({ columns, data = [], title }: Props) {
   const [rows, setRows] = useState<Record<string, unknown>[]>(data)
 
   useEffect(() => {
-    setRows(data)
-  }, [data])
+    if (data && data.length > 0) {
+      setRows([...data])
+    }
+  }, [JSON.stringify(data)])
 
   // infer columns from data if not provided
   const resolvedColumns: TableColumn[] =
