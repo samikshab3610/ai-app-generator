@@ -1,6 +1,3 @@
-Good. Now let's write the README while Vercel builds. Create/replace `README.md` with this:
-
-```markdown
 # AI App Generator
 
 A metadata-driven application runtime that converts JSON configuration into live, full-stack web applications.
@@ -128,5 +125,5 @@ npm run dev
 - **Phase 5**: Vercel deployment, production fixes, README
 
 ## 👩‍💻 Built By
-Samiksha Bhore — AI/ML Engineering Student
+Samiksha Bhore
 ```
